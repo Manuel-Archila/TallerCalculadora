@@ -146,4 +146,47 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn13"
+            android:layout_margin="4dp"
+            android:text="0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="22sp"/>
+
+        <Button
+            android:id="@+id/btn14"
+            android:layout_margin="4dp"
+            android:text="."
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="22sp"/>
+
+        <Button
+            android:id="@+id/btn15"
+            android:layout_margin="4dp"
+            android:text="="
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="22sp"/>
+
+        <Button
+            android:id="@+id/btn16"
+            android:layout_margin="4dp"
+            android:text="/"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="22sp"/>
+
+    </LinearLayout>
+
 </LinearLayout>
