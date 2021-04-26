@@ -23,6 +23,7 @@ class Calculadora : AppCompatActivity() {
     lateinit var btn14: Button
     lateinit var btn15: Button
     lateinit var btn16: Button
+    lateinit var btn17: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +46,7 @@ class Calculadora : AppCompatActivity() {
         btn14 = findViewById(R.id.btn14)
         btn15 = findViewById(R.id.btn15)
         btn16 = findViewById(R.id.btn16)
+        btn17 = findViewById(R.id.btn17)
 
 
         btn1.setOnClickListener {
@@ -57,7 +59,7 @@ class Calculadora : AppCompatActivity() {
             txtResultado.text = txtResultado.text as String + "3"
         }
         btn4.setOnClickListener {
-            txtResultado.text = txtResultado.text as String + "+"
+            txtResultado.text = txtResultado.text as String + " + "
         }
         btn5.setOnClickListener {
             txtResultado.text = txtResultado.text as String + "4"
@@ -69,7 +71,7 @@ class Calculadora : AppCompatActivity() {
             txtResultado.text = txtResultado.text as String + "6"
         }
         btn8.setOnClickListener {
-            txtResultado.text = txtResultado.text as String + "-"
+            txtResultado.text = txtResultado.text as String + " - "
         }
         btn9.setOnClickListener {
             txtResultado.text = txtResultado.text as String + "7"
@@ -81,7 +83,7 @@ class Calculadora : AppCompatActivity() {
             txtResultado.text = txtResultado.text as String + "9"
         }
         btn12.setOnClickListener {
-            txtResultado.text = txtResultado.text as String + "*"
+            txtResultado.text = txtResultado.text as String + " * "
         }
         btn13.setOnClickListener {
             txtResultado.text = txtResultado.text as String + "0"
@@ -90,11 +92,39 @@ class Calculadora : AppCompatActivity() {
             txtResultado.text = txtResultado.text as String + "."
         }
         btn15.setOnClickListener {
-
-            txtResultado.text = ""
+            val expresion = txtResultado.text as String
+            val expresiones = expresion.split(" ")
+            var resultado = 0.0
+            for (index:Int in expresiones.indices){
+                if(expresiones[index] == "+"){
+                    val num1 = expresiones[index-1].toDouble()
+                    val num2 = expresiones[index+1].toDouble()
+                    val res = (num1 + num2)
+                    resultado += res
+                }else if(expresiones[index] == "-"){
+                    val num1 = expresiones[index-1].toDouble()
+                    val num2 = expresiones[index+1].toDouble()
+                    val res = (num1 - num2)
+                    resultado += res
+                }else if(expresiones[index] == "*") {
+                    val num1 = expresiones[index-1].toDouble()
+                    val num2 = expresiones[index+1].toDouble()
+                    val res = (num1 * num2)
+                    resultado += res
+                }else if(expresiones[index] == "/"){
+                    val num1 = expresiones[index-1].toDouble()
+                    val num2 = expresiones[index+1].toDouble()
+                    val res = (num1 / num2)
+                    resultado += res
+                }
+            }
+            txtResultado.text = resultado.toString()
         }
         btn16.setOnClickListener {
-            txtResultado.text = txtResultado.text as String + "/"
+            txtResultado.text = txtResultado.text as String + " / "
+        }
+        btn17.setOnClickListener {
+            txtResultado.text = ""
         }
 
     }
