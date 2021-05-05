@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import java.util.Stack;
 
 class Calculadora : AppCompatActivity() {
     lateinit var txtResultado: TextView
@@ -24,6 +25,8 @@ class Calculadora : AppCompatActivity() {
     lateinit var btn15: Button
     lateinit var btn16: Button
     lateinit var btn17: Button
+    lateinit var btn18: Button
+    lateinit var btn19: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,84 +50,88 @@ class Calculadora : AppCompatActivity() {
         btn15 = findViewById(R.id.btn15)
         btn16 = findViewById(R.id.btn16)
         btn17 = findViewById(R.id.btn17)
+        btn18 = findViewById(R.id.btn18)
+        btn19 = findViewById(R.id.btn19)
+        var exp = ""
 
 
         btn1.setOnClickListener {
             txtResultado.text = txtResultado.text as String + "1"
+            exp = exp + "1"
         }
         btn2.setOnClickListener {
             txtResultado.text = txtResultado.text as String + "2"
+            exp = exp + "2"
         }
         btn3.setOnClickListener {
             txtResultado.text = txtResultado.text as String + "3"
+            exp = exp + "3"
         }
         btn4.setOnClickListener {
-            txtResultado.text = txtResultado.text as String + " + "
+            txtResultado.text = txtResultado.text as String + "+"
+            exp = exp + " + "
         }
         btn5.setOnClickListener {
             txtResultado.text = txtResultado.text as String + "4"
+            exp = exp + "4"
         }
         btn6.setOnClickListener {
             txtResultado.text = txtResultado.text as String + "5"
+            exp = exp + "5"
         }
         btn7.setOnClickListener {
             txtResultado.text = txtResultado.text as String + "6"
+            exp = exp + "6"
         }
         btn8.setOnClickListener {
-            txtResultado.text = txtResultado.text as String + " - "
+            txtResultado.text = txtResultado.text as String + "-"
+            exp = exp + " - "
         }
         btn9.setOnClickListener {
             txtResultado.text = txtResultado.text as String + "7"
+            exp = exp + "7"
         }
         btn10.setOnClickListener {
             txtResultado.text = txtResultado.text as String + "8"
+            exp = exp + "8"
         }
         btn11.setOnClickListener {
             txtResultado.text = txtResultado.text as String + "9"
+            exp = exp + "9"
         }
         btn12.setOnClickListener {
-            txtResultado.text = txtResultado.text as String + " * "
+            txtResultado.text = txtResultado.text as String + "*"
+            exp = exp + " * "
         }
         btn13.setOnClickListener {
             txtResultado.text = txtResultado.text as String + "0"
+            exp = exp + "0"
         }
         btn14.setOnClickListener {
             txtResultado.text = txtResultado.text as String + "."
+            exp = exp + "."
         }
         btn15.setOnClickListener {
-            val expresion = txtResultado.text as String
-            val expresiones = expresion.split(" ")
-            var resultado = 0.0
-            for (index:Int in expresiones.indices){
-                if(expresiones[index] == "+"){
-                    val num1 = expresiones[index-1].toDouble()
-                    val num2 = expresiones[index+1].toDouble()
-                    val res = (num1 + num2)
-                    resultado += res
-                }else if(expresiones[index] == "-"){
-                    val num1 = expresiones[index-1].toDouble()
-                    val num2 = expresiones[index+1].toDouble()
-                    val res = (num1 - num2)
-                    resultado += res
-                }else if(expresiones[index] == "*") {
-                    val num1 = expresiones[index-1].toDouble()
-                    val num2 = expresiones[index+1].toDouble()
-                    val res = (num1 * num2)
-                    resultado += res
-                }else if(expresiones[index] == "/"){
-                    val num1 = expresiones[index-1].toDouble()
-                    val num2 = expresiones[index+1].toDouble()
-                    val res = (num1 / num2)
-                    resultado += res
-                }
-            }
-            txtResultado.text = resultado.toString()
+            var convertido = Convertidor.infixToPostfix(exp)
+            var calculadoraa = Calculator()
+            var resultado = calculadoraa.Calculo(convertido)
+            txtResultado.text = resultado as String
         }
         btn16.setOnClickListener {
-            txtResultado.text = txtResultado.text as String + " / "
+            txtResultado.text = txtResultado.text as String + "/"
+            exp = exp + " / "
         }
         btn17.setOnClickListener {
             txtResultado.text = ""
+            exp = ""
+        }
+        btn18.setOnClickListener {
+            txtResultado.text = txtResultado.text as String + "("
+            exp = exp + " ( "
+        }
+        btn19.setOnClickListener {
+            txtResultado.text = txtResultado.text as String + ")"
+            exp = exp + " ) "
         }
 
     }
