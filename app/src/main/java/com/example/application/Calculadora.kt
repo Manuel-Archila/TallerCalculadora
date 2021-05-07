@@ -4,7 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import java.util.Stack;
+import java.util.Scanner
+import java.util.LinkedList
 
 class Calculadora : AppCompatActivity() {
     lateinit var txtResultado: TextView
@@ -53,6 +54,7 @@ class Calculadora : AppCompatActivity() {
         btn18 = findViewById(R.id.btn18)
         btn19 = findViewById(R.id.btn19)
         var exp = ""
+        var reader = Reader()
 
 
         btn1.setOnClickListener {
@@ -112,9 +114,10 @@ class Calculadora : AppCompatActivity() {
             exp = exp + "."
         }
         btn15.setOnClickListener {
-            var convertido = Convertidor.infixToPostfix(exp)
-            var calculadoraa = Calculator()
-            var resultado = calculadoraa.Calculo(convertido)
+            var sc = Scanner(exp)
+            var liston = reader.ListReader(sc)
+            var resultado = reader.Evaluar(liston)
+            exp = resultado
             txtResultado.text = resultado as String
         }
         btn16.setOnClickListener {
