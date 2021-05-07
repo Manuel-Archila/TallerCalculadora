@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import java.util.Scanner
-import java.util.LinkedList
 
 class Calculadora : AppCompatActivity() {
     lateinit var txtResultado: TextView
